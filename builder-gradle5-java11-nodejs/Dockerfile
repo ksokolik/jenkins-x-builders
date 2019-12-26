@@ -1,4 +1,4 @@
-FROM gcr.io/jenkinsxio/builder-base:0.0.74
+FROM gcr.io/jenkinsxio/builder-base:0.0.76
 
 CMD ["gradle"]
 
@@ -52,6 +52,6 @@ RUN curl -f -L -o /tmp/yarn.tgz https://github.com/yarnpkg/yarn/releases/downloa
         ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn
 
 # jx
-ENV JX_VERSION 2.0.1065
+ENV JX_VERSION 2.0.1094
 RUN curl -f -L https://github.com/jenkins-x/jx/releases/download/v${JX_VERSION}/jx-linux-amd64.tar.gz | tar xzv && \
   mv jx /usr/bin/
