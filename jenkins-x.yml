@@ -54,7 +54,7 @@ pipelineConfig:
                   command: /kaniko/warmer
                   args:
                     - --cache-dir=/workspace
-                    - --image=gcr.io/jenkinsxio/builder-base:0.0.74
+                    - --image=gcr.io/jenkinsxio/builder-base:0.0.76
 
                 # builders
                 - name: build-and-push-maven-java11
@@ -134,7 +134,7 @@ pipelineConfig:
                     command: /kaniko/warmer
                     args:
                       - --cache-dir=/workspace
-                      - --image=gcr.io/jenkinsxio/builder-base:0.0.74
+                      - --image=gcr.io/jenkinsxio/builder-base:0.0.76
                   - name: build-and-push-go-maven
                     command: /kaniko/executor
                     args:
@@ -212,7 +212,7 @@ pipelineConfig:
                     command: /kaniko/warmer
                     args:
                       - --cache-dir=/workspace
-                      - --image=gcr.io/jenkinsxio/builder-base:0.0.74
+                      - --image=gcr.io/jenkinsxio/builder-base:0.0.76
                   - name: build-and-push-gradle
                     command: /kaniko/executor
                     args:
@@ -290,14 +290,23 @@ pipelineConfig:
                     command: /kaniko/warmer
                     args:
                       - --cache-dir=/workspace
-                      - --image=gcr.io/jenkinsxio/builder-swiftbase:0.0.74
-                      - --image=gcr.io/jenkinsxio/builder-base:0.0.74
-                      - --image=gcr.io/jenkinsxio/builder-rubybase:0.0.74
+                      - --image=gcr.io/jenkinsxio/builder-swiftbase:0.0.76
+                      - --image=gcr.io/jenkinsxio/builder-base:0.0.76
+                      - --image=gcr.io/jenkinsxio/builder-rubybase:0.0.76
                   - name: build-and-push-jx
                     command: /kaniko/executor
                     args:
                       - --dockerfile=/workspace/source/builder-jx/Dockerfile
                       - --destination=gcr.io/jenkinsxio/builder-jx:${inputs.params.version}
+                      - --context=/workspace/source
+                      - --cache-repo=gcr.io/jenkinsxio/cache
+                      - --cache=true
+                      - --cache-dir=/workspace
+                  - name: build-and-push-asciidoctor
+                    command: /kaniko/executor
+                    args:
+                      - --dockerfile=/workspace/source/builder-asciidoctor/Dockerfile
+                      - --destination=gcr.io/jenkinsxio/builder-asciidoctor:${inputs.params.version}
                       - --context=/workspace/source
                       - --cache-repo=gcr.io/jenkinsxio/cache
                       - --cache=true
@@ -370,7 +379,7 @@ pipelineConfig:
                     command: /kaniko/warmer
                     args:
                       - --cache-dir=/workspace
-                      - --image=gcr.io/jenkinsxio/builder-base:0.0.74
+                      - --image=gcr.io/jenkinsxio/builder-base:0.0.76
                   - name: build-and-push-python37
                     command: /kaniko/executor
                     args:
@@ -486,9 +495,9 @@ pipelineConfig:
               command: /kaniko/warmer
               args:
                 - --cache-dir=/workspace
-                - --image=gcr.io/jenkinsxio/builder-swiftbase:0.0.74
-                - --image=gcr.io/jenkinsxio/builder-base:0.0.74
-                - --image=gcr.io/jenkinsxio/builder-rubybase:0.0.74
+                - --image=gcr.io/jenkinsxio/builder-swiftbase:0.0.76
+                - --image=gcr.io/jenkinsxio/builder-base:0.0.76
+                - --image=gcr.io/jenkinsxio/builder-rubybase:0.0.76
 
             - name: build-and-push-jx2
               command: /kaniko/executor
@@ -592,6 +601,16 @@ pipelineConfig:
                 - --dockerfile=/workspace/source/builder-jx/Dockerfile
                 - --destination=gcr.io/jenkinsxio/builder-jx:${inputs.params.version}
                 - --destination=gcr.io/jenkinsxio/builder-jx:latest
+                - --context=/workspace/source
+                - --cache-repo=gcr.io/jenkinsxio/cache
+                - --cache=true
+                - --cache-dir=/workspace
+            - name: build-and-push-asciidoctor
+              command: /kaniko/executor
+              args:
+                - --dockerfile=/workspace/source/builder-asciidoctor/Dockerfile
+                - --destination=gcr.io/jenkinsxio/builder-asciidoctor:${inputs.params.version}
+                - --destination=gcr.io/jenkinsxio/builder-asciidoctor:latest
                 - --context=/workspace/source
                 - --cache-repo=gcr.io/jenkinsxio/cache
                 - --cache=true
