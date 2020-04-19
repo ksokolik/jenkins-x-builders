@@ -1,4 +1,4 @@
-ENV TERRAFORM 0.12.13
+ENV TERRAFORM 0.12.17
 RUN wget https://releases.hashicorp.com/terraform/${TERRAFORM}/terraform_${TERRAFORM}_linux_amd64.zip && \
   unzip terraform_${TERRAFORM}_linux_amd64.zip && \
   chmod +x terraform && mv terraform /usr/bin/terraform && rm terraform_${TERRAFORM}_linux_amd64.zip
@@ -11,7 +11,7 @@ RUN curl -f -Lo terragrunt https://github.com/gruntwork-io/terragrunt/releases/d
 ENV PATH $PATH:/usr/local/
 
 # jx
-ENV JX_VERSION 2.0.1094
+ENV JX_VERSION 2.0.1286
 RUN curl -f -L https://github.com/jenkins-x/jx/releases/download/v${JX_VERSION}/jx-linux-amd64.tar.gz | tar xzv && \
   mv jx /usr/bin/
 

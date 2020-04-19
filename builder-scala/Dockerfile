@@ -1,11 +1,11 @@
-FROM gcr.io/jenkinsxio/builder-base:0.0.76
+FROM gcr.io/jenkinsxio/builder-base:0.0.80
 
 RUN yum install -y java-1.8.0-openjdk-devel && \
     yum -y groupinstall 'Development Tools' && \
     yum clean all
 
-ENV SCALA_VERSION 2.12.10
-ENV SBT_VERSION 1.3.2
+ENV SCALA_VERSION 2.12.11
+ENV SBT_VERSION 1.3.9
 
 RUN \
   curl -fsL https://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz | tar xfz - -C /root/ && \
@@ -19,6 +19,6 @@ RUN \
   yum clean all
 
 # jx
-ENV JX_VERSION 2.0.1094
+ENV JX_VERSION 2.0.1286
 RUN curl -f -L https://github.com/jenkins-x/jx/releases/download/v${JX_VERSION}/jx-linux-amd64.tar.gz | tar xzv && \
   mv jx /usr/bin/

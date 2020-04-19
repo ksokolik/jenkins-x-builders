@@ -1,4 +1,4 @@
-FROM gcr.io/jenkinsxio/builder-base:0.0.76
+FROM gcr.io/jenkinsxio/builder-base:0.0.80
 
 CMD ["gradle"]
 
@@ -39,6 +39,6 @@ ENV JAVA_HOME /usr/java
 RUN gradle --version
 
 # jx
-ENV JX_VERSION 2.0.1094
+ENV JX_VERSION 2.0.1286
 RUN curl -f -L https://github.com/jenkins-x/jx/releases/download/v${JX_VERSION}/jx-linux-amd64.tar.gz | tar xzv && \
   mv jx /usr/bin/
